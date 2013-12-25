@@ -1,19 +1,31 @@
 Example of Facebook login flow with Spring MVC
-==============================================
+----------------------------------------------
+Controller handle RESTful steps of facebook authentication process
 
-- First you need register facebook app and get App ID and App Secret keys.
-- Specify Site URL: (http://{host}/signin/facebook)
+#####Facebook settings:
++ First you need register application on facebook and get **App ID** and **App Secret** keys.
+[App Dashboard](https://developers.facebook.com/apps/)
++ Specify Site URL, which will be used as `redirect_uri` : http://{host}/signin/facebook
 
-- It required simple Spring MVC config 
-+ `<mvc:annotation-driven/> <context:component-scan base-package="gameru" />` for using annotation
-+ On page add *facebook login button* like that `<a href="/auth/facebook" class="fb_login">Log in with Facebook</a>`
-+ Add something like fb.properties file with facebook keys
-`#FACEBOOK
+#####Additional configs: 
++ Spring config:
+```
+<mvc:annotation-driven/>
+<context:component-scan base-package="facebook.login"/>
+<context:property-placeholder location="classpath:fb.properties"/>
+```
+
++ Add something like `fb.properties` file with facebook keys
+```
+#FACEBOOK
 fb.client_id=
 fb.secret=
 fb.redirect_uri=http://{host}/signin/facebook
-`
-+ In spring xml config specify `<context:property-placeholder location="classpath:fb.properties"/>`
+```
+
++ Add html *facebook login button* like that `<a href="/auth/facebook" class="fb_login">Log in with Facebook</a>`
+
 
 *** 
-Controller handle REST steps of facebook authentication process
+Hope it will be helpful.<br/>
+Any suggestions, please contact: `timenkov(a)gmail.com`
